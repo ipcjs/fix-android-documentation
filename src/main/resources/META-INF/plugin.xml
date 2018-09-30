@@ -15,9 +15,11 @@
     <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
     -->
-
+    <depends>org.jetbrains.android</depends>
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <lang.documentationProvider language="JAVA"
+                                    implementationClass="com.github.ipcjs.fad.FixAndroidDocumentationProvider2"
+                                    order="after org.jetbrains.kotlin.idea.KotlinQuickDocumentationProvider'="/>
     </extensions>
 
     <actions>

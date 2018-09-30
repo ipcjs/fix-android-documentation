@@ -38,6 +38,7 @@ compileTestKotlin {
 }
 intellij {
     version '2018.1'
+    plugins 'android'
 }
 patchPluginXml {
     changeNotes """
