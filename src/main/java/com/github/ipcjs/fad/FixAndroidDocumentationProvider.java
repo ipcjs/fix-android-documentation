@@ -50,7 +50,7 @@ public class FixAndroidDocumentationProvider extends AbstractDocumentationProvid
 
         private static final Pattern ourClassDataStartPattern = Pattern.compile("START OF CLASS DATA", Pattern.CASE_INSENSITIVE);
         private static final Pattern ourClassDataEndPattern = Pattern.compile("SUMMARY ========", Pattern.CASE_INSENSITIVE);
-//        private static final Pattern ourNonClassDataEndPattern = Pattern.compile("<A (NAME|ID)=", Pattern.CASE_INSENSITIVE);
+        //        private static final Pattern ourNonClassDataEndPattern = Pattern.compile("<A (NAME|ID)=", Pattern.CASE_INSENSITIVE);
         private static final Pattern ourNonClassDataEndPattern = Pattern.compile("<h3 class=\"api-name\" id=\"", Pattern.CASE_INSENSITIVE);
 
         @NotNull
@@ -68,7 +68,7 @@ public class FixAndroidDocumentationProvider extends AbstractDocumentationProvid
             Matcher anchorMatcher = ourAnchorSuffix.matcher(url);
             if (anchorMatcher.find()) {
                 anchorPresent = true;
-                startSection = Pattern.compile("<h3 class=\"api-name\" id=\"" + Pattern.quote(anchorMatcher.group(1)) + "\"", Pattern.CASE_INSENSITIVE);
+                startSection = Pattern.compile("<h3 class=\"api-name\" id=\"" + Pattern.quote(anchorMatcher.group(1).replace(" ", "%20")) + "\"", Pattern.CASE_INSENSITIVE);
                 endSection = ourNonClassDataEndPattern;
             }
             return new ParseSettings(startSection, endSection, !anchorPresent, anchorPresent);
